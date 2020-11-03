@@ -49,9 +49,13 @@ public class MyProcessor extends AbstractProcessor {
 		}
 		
 		//If user has specified the name of an environment variable, they will need to specify what Heroku app this project refers to.
-		if(herokuAppName == null && !environmentVariablesToUpload.isEmpty()) {
-			messager.printMessage(Diagnostic.Kind.ERROR, "To use @UploadToHeroku, at least one @HerokuApp annotation needs to be present.");
-			return didIProcessThemAll;
+		if(herokuAppName == null){
+			if(environmentVariablesToUpload.isEmpty()) {
+				return didIProcessThemAll;
+			}else {
+				messager.printMessage(Diagnostic.Kind.ERROR, "To use @UploadToHeroku, at least one @HerokuApp annotation needs to be present.");
+				return didIProcessThemAll;
+			}
 		}
 		
 		//Generate .bat helper files and environment variable helper Enum.
