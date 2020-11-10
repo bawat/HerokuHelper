@@ -187,7 +187,7 @@ public enum BatchRunnablesFactory implements BatchFileGenerator{
 		toWrite += "\r\n" +
 				"	static {\r\n" + 
 				"		String missingVariables = \"\";\r\n" + 
-				"		for(var value : HerokuEnvironmentVariables.values()) {\r\n" + 
+				"		for(HerokuEnvironmentVariables value : HerokuEnvironmentVariables.values()) {\r\n" + 
 				"			String result = System.getenv(value.variableName);\r\n" + 
 				"			if(result == null) {\r\n" + 
 				"				missingVariables += \"Environment variable \" + value.variableName + \" not present on local machine.\" + System.lineSeparator();\r\n" + 
